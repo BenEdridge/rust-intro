@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Community - Rust Intro</title>
+        <title>The Borrow Checker - Rust Intro</title>
         
         
 
@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1_why_rust.html"><strong aria-hidden="true">1.</strong> Why Rust?</a></li><li class="chapter-item expanded "><a href="chapter_2_the_language.html"><strong aria-hidden="true">2.</strong> Language</a></li><li class="chapter-item expanded "><a href="chapter_2-1_the_language.html"><strong aria-hidden="true">3.</strong> The Borrow Checker</a></li><li class="chapter-item expanded "><a href="chapter_1-1_what_is_used_for.html"><strong aria-hidden="true">4.</strong> Cool Stuff</a></li><li class="chapter-item expanded "><a href="chapter_3_tooling.html"><strong aria-hidden="true">5.</strong> Tooling</a></li><li class="chapter-item expanded "><a href="chapter_4_community.html" class="active"><strong aria-hidden="true">6.</strong> Community</a></li><li class="chapter-item expanded "><a href="chapter_5_good.html"><strong aria-hidden="true">7.</strong> Good</a></li><li class="chapter-item expanded "><a href="chapter_6_bad.html"><strong aria-hidden="true">8.</strong> Bad/Hard</a></li><li class="chapter-item expanded "><a href="chapter_6_ugly.html"><strong aria-hidden="true">9.</strong> Ugly</a></li><li class="chapter-item expanded "><a href="chapter_7_cool_things.html"><strong aria-hidden="true">10.</strong> Cool Things</a></li><li class="chapter-item expanded "><a href="references.html"><strong aria-hidden="true">11.</strong> References</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1_why_rust.html"><strong aria-hidden="true">1.</strong> Why Rust?</a></li><li class="chapter-item expanded "><a href="chapter_2_the_language.html"><strong aria-hidden="true">2.</strong> Language</a></li><li class="chapter-item expanded "><a href="chapter_2-1_the_language.html" class="active"><strong aria-hidden="true">3.</strong> The Borrow Checker</a></li><li class="chapter-item expanded "><a href="chapter_1-1_what_is_used_for.html"><strong aria-hidden="true">4.</strong> Cool Stuff</a></li><li class="chapter-item expanded "><a href="chapter_3_tooling.html"><strong aria-hidden="true">5.</strong> Tooling</a></li><li class="chapter-item expanded "><a href="chapter_4_community.html"><strong aria-hidden="true">6.</strong> Community</a></li><li class="chapter-item expanded "><a href="chapter_5_good.html"><strong aria-hidden="true">7.</strong> Good</a></li><li class="chapter-item expanded "><a href="chapter_6_bad.html"><strong aria-hidden="true">8.</strong> Bad/Hard</a></li><li class="chapter-item expanded "><a href="chapter_6_ugly.html"><strong aria-hidden="true">9.</strong> Ugly</a></li><li class="chapter-item expanded "><a href="chapter_7_cool_things.html"><strong aria-hidden="true">10.</strong> Cool Things</a></li><li class="chapter-item expanded "><a href="references.html"><strong aria-hidden="true">11.</strong> References</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -155,28 +155,78 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#community" id="community">Community</a></h1>
+                        <h1><a class="header" href="#its-all-about-the-memory" id="its-all-about-the-memory">Its all about the memory</a></h1>
 <ul>
-<li>Large, helpful and beginner friendly</li>
-<li>No silly questions</li>
-<li>Library support</li>
+<li>Some languages have automatic collection of unused memory Java, NodeJS they keep track of references using memory</li>
+<li>Others require manual memory management like C, C++ allocations and removal must be done manually, fast but error prone, a double deallocate is a bug, a missed deallocate is a memory leak, sometimes this is also misused as a feature</li>
+<li>Rust uses a slightly different concept of ownership. Where variables are kept track by an owner and the value dropped once this single owner is out of scope</li>
 </ul>
-<h2><a class="header" href="#firefox" id="firefox">Firefox</a></h2>
-<h2><a class="header" href="#library-ecosystem" id="library-ecosystem">Library ecosystem</a></h2>
-<h2><a class="header" href="#arewe-sites" id="arewe-sites">AreWe... Sites</a></h2>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>{                      // s is not valid here, it’s not yet declared
+    let s = &quot;hello&quot;;   // s is valid from this point forward
+
+    // do stuff with s
+}     
+                        // this scope is now over, and s is no longer valid
+<span class="boring">}
+</span></code></pre></pre>
+<h1><a class="header" href="#what-rust-does-a-move-instead-of-a-shallow-copy" id="what-rust-does-a-move-instead-of-a-shallow-copy">What Rust does? A move instead of a shallow copy</a></h1>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let s1 = String::from(&quot;hello&quot;);
+let s2 = s1;
+
+println!(&quot;{}, world!&quot;, s1);
+<span class="boring">}
+</span></code></pre></pre>
+<p>s2 is not a shallow copy or reference but the actual pointer to the previous s1 with a new name.
+The above will throw a compile time error preventing mistakes being made.</p>
+<h1><a class="header" href="#deep-copies-are-never-made-explicitly" id="deep-copies-are-never-made-explicitly">Deep copies are never made explicitly</a></h1>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let s1 = String::from(&quot;hello&quot;);
+let s1 = String::from(&quot;bye&quot;);
+
+println!(&quot;{}, world!&quot;, s1);
+<span class="boring">}
+</span></code></pre></pre>
+<p>This is a shadowed var, enforced by the compiler it can help cleaner variable naming when you want to process data.</p>
+<h1><a class="header" href="#copying-heap-allocated-variables-strings--more-complicated-types" id="copying-heap-allocated-variables-strings--more-complicated-types">Copying Heap Allocated Variables (Strings + more complicated types)</a></h1>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let s1 = String::from(&quot;hello&quot;);
+let s2 = s1.clone();
+
+println!(&quot;{}, world!&quot;, s1);
+<span class="boring">}
+</span></code></pre></pre>
+<h1><a class="header" href="#copying-stack-data-eg-simple-data-types-integers-bool-floats-char" id="copying-stack-data-eg-simple-data-types-integers-bool-floats-char">Copying Stack data eg. Simple Data Types (integers, bool, floats, char)</a></h1>
+<p>This works as integers have a known size and pushed on stack then off when the lifetime is over.</p>
+<pre><code>let x = 5;
+let y = x;
+
+println!(&quot;x = {}, y = {}&quot;, x, y);
+</code></pre>
+<p>Note:
+<strong>Borrow checker at compile time only (After this it's just machine code as per usual)</strong></p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="chapter_3_tooling.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="chapter_2_the_language.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="chapter_5_good.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="chapter_1-1_what_is_used_for.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -188,13 +238,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="chapter_3_tooling.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="chapter_2_the_language.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="chapter_5_good.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="chapter_1-1_what_is_used_for.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 

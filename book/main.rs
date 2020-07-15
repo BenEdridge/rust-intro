@@ -2,7 +2,9 @@
 #![feature(format_args_nl)]
 #![feature(print_internals)]
 
-use self::module;
+use rayon::prelude::*;
+use orion::pwhash;
+
 
 /// Returns a person with the name given them
 ///
@@ -27,9 +29,23 @@ use self::module;
 //         std::io::_print(std::format_args_nl!($($arg)*));
 //     })
 // }
+
+fn hash_of_hashes(input: Vec<&str>) -> String {
+    input.par_iter() // Rayon is activated here!
+        .map(|i| {
+            // *i
+            let r: () = pwhash::hash_password(i, 3, 1<<16)?;
+        })
+        .collect::<String>()
+}
+
 fn main() {
 
     let camelCase = "I'm a camel";
+
+    let list = vec!(camelCase, "test", "a");
+    let result = hash_of_hashes(list);
+    println!("hash-chain: {}", result);
 
     println!("Getting meta with macros!");
 

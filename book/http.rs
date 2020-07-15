@@ -1,10 +1,7 @@
 use actix_web::body::Body;
 use actix_web::{client, web, App, HttpResponse, HttpServer, Responder};
-use std::io::Error;
-use std::io::ErrorKind;
 use std::sync::Mutex;
 // use tokio::sync::Mutex;
-
 
 struct DataStore {
     req_count: Mutex<i32>
@@ -37,8 +34,8 @@ async fn index(data: web::Data<DataStore>) -> impl Responder {
 
     println!("Requests made: {}", counter);
     HttpResponse::Ok()
-    .content_type("application/txt")
-    .body("Hello world!")
+    .content_type("application/json")
+    .body("{\"status\": \"Hello world!\"}")
 }
 
 async fn getter(data: web::Data<DataStore>) -> impl Responder {

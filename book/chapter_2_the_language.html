@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1_why_rust.html"><strong aria-hidden="true">1.</strong> Why Rust?</a></li><li class="chapter-item expanded "><a href="chapter_2_the_language.html" class="active"><strong aria-hidden="true">2.</strong> Language</a></li><li class="chapter-item expanded "><a href="chapter_3_tooling.html"><strong aria-hidden="true">3.</strong> Tooling</a></li><li class="chapter-item expanded "><a href="chapter_4_community.html"><strong aria-hidden="true">4.</strong> Community</a></li><li class="chapter-item expanded "><a href="chapter_5_good.html"><strong aria-hidden="true">5.</strong> Good</a></li><li class="chapter-item expanded "><a href="chapter_6_bad.html"><strong aria-hidden="true">6.</strong> Bad/Hard</a></li><li class="chapter-item expanded "><a href="chapter_6_ugly.html"><strong aria-hidden="true">7.</strong> Ugly</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1_why_rust.html"><strong aria-hidden="true">1.</strong> Why Rust?</a></li><li class="chapter-item expanded "><a href="chapter_2_the_language.html" class="active"><strong aria-hidden="true">2.</strong> Language</a></li><li class="chapter-item expanded "><a href="chapter_2-1_the_language.html"><strong aria-hidden="true">3.</strong> The Borrow Checker</a></li><li class="chapter-item expanded "><a href="chapter_1-1_what_is_used_for.html"><strong aria-hidden="true">4.</strong> Cool Stuff</a></li><li class="chapter-item expanded "><a href="chapter_3_tooling.html"><strong aria-hidden="true">5.</strong> Tooling</a></li><li class="chapter-item expanded "><a href="chapter_4_community.html"><strong aria-hidden="true">6.</strong> Community</a></li><li class="chapter-item expanded "><a href="chapter_5_good.html"><strong aria-hidden="true">7.</strong> Good</a></li><li class="chapter-item expanded "><a href="chapter_6_bad.html"><strong aria-hidden="true">8.</strong> Bad/Hard</a></li><li class="chapter-item expanded "><a href="chapter_6_ugly.html"><strong aria-hidden="true">9.</strong> Ugly</a></li><li class="chapter-item expanded "><a href="chapter_7_cool_things.html"><strong aria-hidden="true">10.</strong> Cool Things</a></li><li class="chapter-item expanded "><a href="references.html"><strong aria-hidden="true">11.</strong> References</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -155,51 +155,25 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#language" id="language">Language</a></h1>
-<ul>
-<li>Compiled, statically typed, no GC</li>
-<li>borrow checker (The big one!)</li>
-<li>immutable by default
-<ul>
-<li>Must do <code>let mut</code></li>
-</ul>
-</li>
-<li>matching
-<ul>
-<li><code>match {}</code></li>
-</ul>
-</li>
-<li>optionals/results</li>
-<li>? command</li>
-<li>enums/structs</li>
-<li>macros and language extensions
-<ul>
-<li><code>!dbg()</code></li>
-</ul>
-</li>
-<li>testing</li>
-<li>explicit error handling</li>
-<li>generics
-<ul>
-<li><code>Option&lt;T&gt;</code></li>
-</ul>
-</li>
-<li>iterators
-<ul>
-<li><code>iter().map()</code></li>
-</ul>
-</li>
-<li>integrated docs</li>
-<li>references, slices, borrowing, *, &amp;, ownership</li>
-</ul>
-<table><thead><tr><th>Feature</th><th>Rust</th><th>JS</th></tr></thead><tbody>
-<tr><td>manifest</td><td>Cargo.toml</td><td>package.json</td></tr>
-<tr><td>lock file</td><td>Cargo.lock</td><td>package-lock.json</td></tr>
-<tr><td>variables</td><td>const, let</td><td>var, let, const</td></tr>
-<tr><td>functions</td><td>fn, |a|</td><td>function, =&gt;</td></tr>
-<tr><td>types</td><td>many</td><td>object ie {}</td></tr>
-</tbody></table>
-<h2><a class="header" href="#fizz-buzzing-1-100-with-rust-matchers" id="fizz-buzzing-1-100-with-rust-matchers">fizz buzzing 1-100 with Rust matchers</a></h2>
+                        <h1><a class="header" href="#the-language" id="the-language">The Language</a></h1>
+<p>Syntax is quite normal, nothing crazy</p>
+<h2><a class="header" href="#the-borrow-checker-in-action" id="the-borrow-checker-in-action">The Borrow Checker in Action</a></h2>
+<p>Rust keeps track owners of memory (That is a variable owns a piece of memory and has a lifetime during the program).
+During stages of execution that memory may be freed after use or borrowed during modification.</p>
+<pre><pre class="playground"><code class="language-rust editable">fn main(){
+    let s = String::from(&quot;hello&quot;);
+    borrow_and_print(s);
+    // uncomment below to see the borrow checker in action
+    //println!(&quot;{}&quot;, s);
+}
+
+// s is string stored on the heap and borrowed by this function
+fn borrow_and_print(s: String) {
+    println!(&quot;{}&quot;, s);
+}
+</code></pre></pre>
+<h2><a class="header" href="#awesome-pattern-matching-syntax-with-match" id="awesome-pattern-matching-syntax-with-match">Awesome pattern matching syntax with <code>match</code></a></h2>
+<p>From the Rust Book:</p>
 <pre><pre class="playground"><code class="language-rust editable">fn main () {
     for i in 1..=100 {
         match (i % 3, i % 5) {
@@ -211,64 +185,48 @@
     }
 }
 </code></pre></pre>
-<h1><a class="header" href="#its-all-about-managing-memory" id="its-all-about-managing-memory">Its all about managing memory</a></h1>
-<ul>
-<li>Some languages have automatic collection of unused memory Java, NodeJS they keep track of references using memory</li>
-<li>Others require manual memory management like C, C++ allocations and removal must be done manually, fast but error prone, a double deallocate is a bug, a missed deallocate is a memory leak, sometimes this is also misused as a feature</li>
-<li>Rust uses a slightly different concept of ownership. Where variables are kept track by an owner and the value dropped once this single owner is out of scope</li>
-</ul>
-<pre><code>    {                      // s is not valid here, it’s not yet declared
-        let s = &quot;hello&quot;;   // s is valid from this point forward
+<h2><a class="header" href="#immutable-by-default" id="immutable-by-default">Immutable by default</a></h2>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main(){
+</span>// Mutable variables must use explicit `mut`
+let mut i = 42;
+i+=1;
 
-        // do stuff with s
-    }     
-                           // this scope is now over, and s is no longer valid
-</code></pre>
-<p>Note: In C++, this pattern of deallocating resources at the end of an item’s lifetime is sometimes called Resource Acquisition Is Initialization (RAII). The drop function in Rust will be familiar to you if you’ve used RAII patterns.</p>
-<h1><a class="header" href="#what-rust-does-a-move-instead-of-a-shallow-copy" id="what-rust-does-a-move-instead-of-a-shallow-copy">What Rust does? A move instead of a shallow copy</a></h1>
-<pre><code>    let s1 = String::from(&quot;hello&quot;);
-    let s2 = s1;
+println!(&quot;{}&quot;,i);
+<span class="boring">}
+</span></code></pre></pre>
+<h2><a class="header" href="#no-nulls---optionalsresult-instead" id="no-nulls---optionalsresult-instead">No Nulls - Optionals/Result instead</a></h2>
+<pre><pre class="playground"><code class="language-rust editable">use std::fs::read_to_string;
+use std::fs::read_dir;
 
-    println!(&quot;{}, world!&quot;, s1);
-</code></pre>
-<p>s2 is not a shallow copy but the actual pointer to the previous s1 with a new name.</p>
-<p>This is very similar to the shadowing support in Rust.
-The above will throw a great compile time error preventing mistakes being made.</p>
-<h1><a class="header" href="#deep-copies-are-never-made-explicitly" id="deep-copies-are-never-made-explicitly">Deep copies are never made explicitly</a></h1>
-<pre><code>    let s1 = String::from(&quot;hello&quot;);
-    let s1 = String::from(&quot;bye&quot;);
+fn main(){
 
-    println!(&quot;{}, world!&quot;, s1);
-</code></pre>
-<p>This is a shadowed var, enforced by the compiler it can help cleaner code when you want to process data.</p>
-<h1><a class="header" href="#copying-heap-data" id="copying-heap-data">Copying Heap Data</a></h1>
-<pre><code>    let s1 = String::from(&quot;hello&quot;);
-    let s2 = s1.clone();
+    //let result = read_to_string(&quot;nothing.txt&quot;);
+    let result = read_to_string(&quot;.gitignore&quot;);
 
-    println!(&quot;{}, world!&quot;, s1);
-</code></pre>
-<h1><a class="header" href="#copying-stack-data-eg-simple-data-types-integers-bool-floats-char" id="copying-stack-data-eg-simple-data-types-integers-bool-floats-char">Copying Stack data eg. Simple Data Types (integers, bool, floats, char)</a></h1>
-<p>This works as copying on the stack is </p>
-<pre><code>    let x = 5;
-    let y = x;
+    // match result {
+    //     Ok(f) =&gt; println!(&quot;File Contents: {}&quot;, f),
+    //     Err(e) =&gt; println!(&quot;Error: {}&quot;, e)
+    // }
 
-    println!(&quot;x = {}, y = {}&quot;, x, y);
-</code></pre>
-<h1><a class="header" href="#borrow-checker-at-compile-time-only-after-this-its-just-machine-code-as-per-usual" id="borrow-checker-at-compile-time-only-after-this-its-just-machine-code-as-per-usual">Borrow checker at compile time only (After this it's just machine code as per usual)</a></h1>
-<h1><a class="header" href="#no-nulls" id="no-nulls">No Nulls</a></h1>
-<pre><pre class="playground"><code class="language-rust editable">enum Option&lt;T&gt; {
-    Some(T),
-    None,
+    // Can also use let result = match (with shadowing)
+    let result = match result {
+        Ok(f) =&gt; f,
+        Err(e) =&gt; panic!(&quot;Problem opening the file: {:?}&quot;, e)
+    };
+
+    println!(&quot;File Contents: {}&quot;, result);
 }
 </code></pre></pre>
-<h1><a class="header" href="#extended-pub-syntax" id="extended-pub-syntax">Extended <code>pub</code> syntax</a></h1>
-<p>Most data types need to be explicitly defined as <code>pub</code> to be exposed and used.</p>
-<pre><code>pub struct Breakfast {
-    pub toast: String,
-    seasonal_fruit: String,
+<h1><a class="header" href="#integrated-testing-more-on-this-later" id="integrated-testing-more-on-this-later">Integrated Testing (More on this later)</a></h1>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[test]
+fn test_something() {
+    assert_ne!(42, 0);
 }
-</code></pre>
-<h1><a class="header" href="#use-syntax-with-optional-as-syntax" id="use-syntax-with-optional-as-syntax">use syntax with optional <code>as</code> syntax</a></h1>
+<span class="boring">}
+</span></code></pre></pre>
 
                     </main>
 
@@ -281,7 +239,7 @@ The above will throw a great compile time error preventing mistakes being made.<
                         
 
                         
-                            <a rel="next" href="chapter_3_tooling.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="chapter_2-1_the_language.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -299,7 +257,7 @@ The above will throw a great compile time error preventing mistakes being made.<
                 
 
                 
-                    <a rel="next" href="chapter_3_tooling.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="chapter_2-1_the_language.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
@@ -310,7 +268,7 @@ The above will throw a great compile time error preventing mistakes being made.<
         
         <!-- Livereload script (if served using the cli tool) -->
         <script type="text/javascript">
-            var socket = new WebSocket("ws://localhost:8080/__livereload");
+            var socket = new WebSocket("ws://localhost:3000/__livereload");
             socket.onmessage = function (event) {
                 if (event.data === "reload") {
                     socket.close();
@@ -326,10 +284,6 @@ The above will throw a great compile time error preventing mistakes being made.<
 
         
 
-        
-        <script type="text/javascript">
-            window.playground_line_numbers = true;
-        </script>
         
 
         

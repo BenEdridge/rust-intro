@@ -91,7 +91,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1_why_rust.html"><strong aria-hidden="true">1.</strong> Why Rust?</a></li><li class="chapter-item expanded "><a href="chapter_2_the_language.html"><strong aria-hidden="true">2.</strong> Language</a></li><li class="chapter-item expanded "><a href="chapter_3_tooling.html"><strong aria-hidden="true">3.</strong> Tooling</a></li><li class="chapter-item expanded "><a href="chapter_4_community.html"><strong aria-hidden="true">4.</strong> Community</a></li><li class="chapter-item expanded "><a href="chapter_5_good.html"><strong aria-hidden="true">5.</strong> Good</a></li><li class="chapter-item expanded "><a href="chapter_6_bad.html"><strong aria-hidden="true">6.</strong> Bad/Hard</a></li><li class="chapter-item expanded "><a href="chapter_6_ugly.html"><strong aria-hidden="true">7.</strong> Ugly</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1_why_rust.html"><strong aria-hidden="true">1.</strong> Why Rust?</a></li><li class="chapter-item expanded "><a href="chapter_2_the_language.html"><strong aria-hidden="true">2.</strong> Language</a></li><li class="chapter-item expanded "><a href="chapter_2-1_the_language.html"><strong aria-hidden="true">3.</strong> The Borrow Checker</a></li><li class="chapter-item expanded "><a href="chapter_1-1_what_is_used_for.html"><strong aria-hidden="true">4.</strong> Cool Stuff</a></li><li class="chapter-item expanded "><a href="chapter_3_tooling.html"><strong aria-hidden="true">5.</strong> Tooling</a></li><li class="chapter-item expanded "><a href="chapter_4_community.html"><strong aria-hidden="true">6.</strong> Community</a></li><li class="chapter-item expanded "><a href="chapter_5_good.html"><strong aria-hidden="true">7.</strong> Good</a></li><li class="chapter-item expanded "><a href="chapter_6_bad.html"><strong aria-hidden="true">8.</strong> Bad/Hard</a></li><li class="chapter-item expanded "><a href="chapter_6_ugly.html"><strong aria-hidden="true">9.</strong> Ugly</a></li><li class="chapter-item expanded "><a href="chapter_7_cool_things.html"><strong aria-hidden="true">10.</strong> Cool Things</a></li><li class="chapter-item expanded "><a href="references.html"><strong aria-hidden="true">11.</strong> References</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -157,57 +157,314 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#why-rust" id="why-rust">Why Rust?</a></h1>
-<p><em>Something I found on Reddit which sums up my experience so far:</em></p>
+                        <h1><a class="header" href="#rust-" id="rust-">Rust? 🦀</a></h1>
+<p><em>Something I found on <code>/r/rust</code> which sums up my experience so far:</em></p>
 <blockquote>
-<p>&quot;in Rust you exchange some down-the-road complexity for some upfront complexity&quot;</p>
+<p>&quot;In Rust you exchange some down-the-road complexity for some upfront complexity&quot;</p>
 </blockquote>
-<h1><a class="header" href="#the-community" id="the-community">The community</a></h1>
-<h1><a class="header" href="#what-else" id="what-else">What else?</a></h1>
-<h1><a class="header" href="#libraries" id="libraries">Libraries</a></h1>
-<p>Are We X Yet
-http://www.arewelearningyet.com/</p>
-<p>https://wiki.mozilla.org/Areweyet</p>
-<h2><a class="header" href="#big-projects-in-rust" id="big-projects-in-rust">Big projects in Rust</a></h2>
+<h2><a class="header" href="#community" id="community">Community</a></h2>
 <ul>
-<li>Supported by Mozilla</li>
-<li>Browser</li>
-<li>Windows API</li>
+<li>2010 - kicked off by Mozilla Research</li>
+<li>A running favourite in StackOverflow's yearly survey</li>
+<li>Large, helpful and beginner friendly community</li>
+<li>Huge selection of packages</li>
 </ul>
-<h2><a class="header" href="#why-wouldnt-you-choose-rust" id="why-wouldnt-you-choose-rust">Why wouldn't you choose Rust?</a></h2>
-<h1><a class="header" href="#references" id="references">References:</a></h1>
-<p>https://doc.rust-lang.org/book/ch10-03-lifetime-syntax.html?search=</p>
-<p>GUI status
-https://areweguiyet.com/</p>
-<p>Web status
-https://www.arewewebyet.org/</p>
-<p>Game development status
-https://arewegameyet.rs/</p>
-<p>try!</p>
-<p>and ?</p>
-<h1><a class="header" href="#errors" id="errors">Errors</a></h1>
-<p>panic - unrecoverable or used in tests</p>
-<p>options - Some(T), None, unwrap will panic if None, 
-- self.job?.phone_number?.area_code </p>
-<p>// This can conveniently be rewritten more compactly with <code>and_then()</code>:
-fn cookable_v2(food: Food) -&gt; Option<Food> {
-have_recipe(food).and_then(have_ingredients)
-}</p>
-<h1><a class="header" href="#language" id="language">Language</a></h1>
+<h2><a class="header" href="#users-of-rust" id="users-of-rust">Users of Rust</a></h2>
 <ul>
-<li>Compiled, statically typed, no GC</li>
-<li>borrow checker (The big one!)</li>
-<li>immutable by default
-<ul>
-<li>Must do <code>let mut</code></li>
+<li>8% of Mozilla Firefox code is in Rust (Over 2 million lines)</li>
+<li>AWS uses Rust for it's firecracker VMs in Lambda and Fargate</li>
+<li>Facebook uses Rust for Libra</li>
 </ul>
-</li>
-<li>matching
+<h2><a class="header" href="#the-language" id="the-language">The Language</a></h2>
 <ul>
-<li><code>match {}</code></li>
+<li>Compiled, statically/strongly typed</li>
+<li>No garbage collector but a borrow checker instead <strong>(The big one!)</strong></li>
+<li>Similar syntax to Scala/Swift</li>
+<li>Amazing docs</li>
 </ul>
-</li>
-<li>optionals/results</li>
+<h1><a class="header" href="#the-language-1" id="the-language-1">The Language</a></h1>
+<p>Syntax is quite normal, nothing crazy</p>
+<h2><a class="header" href="#the-borrow-checker-in-action" id="the-borrow-checker-in-action">The Borrow Checker in Action</a></h2>
+<p>Rust keeps track owners of memory (That is a variable owns a piece of memory and has a lifetime during the program).
+During stages of execution that memory may be freed after use or borrowed during modification.</p>
+<pre><pre class="playground"><code class="language-rust editable">fn main(){
+    let s = String::from(&quot;hello&quot;);
+    borrow_and_print(s);
+    // uncomment below to see the borrow checker in action
+    //println!(&quot;{}&quot;, s);
+}
+
+// s is string stored on the heap and borrowed by this function
+fn borrow_and_print(s: String) {
+    println!(&quot;{}&quot;, s);
+}
+</code></pre></pre>
+<h2><a class="header" href="#awesome-pattern-matching-syntax-with-match" id="awesome-pattern-matching-syntax-with-match">Awesome pattern matching syntax with <code>match</code></a></h2>
+<p>From the Rust Book:</p>
+<pre><pre class="playground"><code class="language-rust editable">fn main () {
+    for i in 1..=100 {
+        match (i % 3, i % 5) {
+            (0,0) =&gt; println!(&quot;FizzBuzz&quot;),
+            (0,_) =&gt; println!(&quot;Fizz&quot;),
+            (_,0) =&gt; println!(&quot;Buzz&quot;),
+            (_,_) =&gt; println!(&quot;{}&quot;, i)
+        }
+    }
+}
+</code></pre></pre>
+<h2><a class="header" href="#immutable-by-default" id="immutable-by-default">Immutable by default</a></h2>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main(){
+</span>// Mutable variables must use explicit `mut`
+let mut i = 42;
+i+=1;
+
+println!(&quot;{}&quot;,i);
+<span class="boring">}
+</span></code></pre></pre>
+<h2><a class="header" href="#no-nulls---optionalsresult-instead" id="no-nulls---optionalsresult-instead">No Nulls - Optionals/Result instead</a></h2>
+<pre><pre class="playground"><code class="language-rust editable">use std::fs::read_to_string;
+use std::fs::read_dir;
+
+fn main(){
+
+    //let result = read_to_string(&quot;nothing.txt&quot;);
+    let result = read_to_string(&quot;.gitignore&quot;);
+
+    // match result {
+    //     Ok(f) =&gt; println!(&quot;File Contents: {}&quot;, f),
+    //     Err(e) =&gt; println!(&quot;Error: {}&quot;, e)
+    // }
+
+    // Can also use let result = match (with shadowing)
+    let result = match result {
+        Ok(f) =&gt; f,
+        Err(e) =&gt; panic!(&quot;Problem opening the file: {:?}&quot;, e)
+    };
+
+    println!(&quot;File Contents: {}&quot;, result);
+}
+</code></pre></pre>
+<h1><a class="header" href="#integrated-testing-more-on-this-later" id="integrated-testing-more-on-this-later">Integrated Testing (More on this later)</a></h1>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>#[test]
+fn test_something() {
+    assert_ne!(42, 0);
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h1><a class="header" href="#its-all-about-the-memory" id="its-all-about-the-memory">Its all about the memory</a></h1>
+<ul>
+<li>Some languages have automatic collection of unused memory Java, NodeJS they keep track of references using memory</li>
+<li>Others require manual memory management like C, C++ allocations and removal must be done manually, fast but error prone, a double deallocate is a bug, a missed deallocate is a memory leak, sometimes this is also misused as a feature</li>
+<li>Rust uses a slightly different concept of ownership. Where variables are kept track by an owner and the value dropped once this single owner is out of scope</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>{                      // s is not valid here, it’s not yet declared
+    let s = &quot;hello&quot;;   // s is valid from this point forward
+
+    // do stuff with s
+}     
+                        // this scope is now over, and s is no longer valid
+<span class="boring">}
+</span></code></pre></pre>
+<h1><a class="header" href="#what-rust-does-a-move-instead-of-a-shallow-copy" id="what-rust-does-a-move-instead-of-a-shallow-copy">What Rust does? A move instead of a shallow copy</a></h1>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let s1 = String::from(&quot;hello&quot;);
+let s2 = s1;
+
+println!(&quot;{}, world!&quot;, s1);
+<span class="boring">}
+</span></code></pre></pre>
+<p>s2 is not a shallow copy or reference but the actual pointer to the previous s1 with a new name.
+The above will throw a compile time error preventing mistakes being made.</p>
+<h1><a class="header" href="#deep-copies-are-never-made-explicitly" id="deep-copies-are-never-made-explicitly">Deep copies are never made explicitly</a></h1>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let s1 = String::from(&quot;hello&quot;);
+let s1 = String::from(&quot;bye&quot;);
+
+println!(&quot;{}, world!&quot;, s1);
+<span class="boring">}
+</span></code></pre></pre>
+<p>This is a shadowed var, enforced by the compiler it can help cleaner variable naming when you want to process data.</p>
+<h1><a class="header" href="#copying-heap-allocated-variables-strings--more-complicated-types" id="copying-heap-allocated-variables-strings--more-complicated-types">Copying Heap Allocated Variables (Strings + more complicated types)</a></h1>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>let s1 = String::from(&quot;hello&quot;);
+let s2 = s1.clone();
+
+println!(&quot;{}, world!&quot;, s1);
+<span class="boring">}
+</span></code></pre></pre>
+<h1><a class="header" href="#copying-stack-data-eg-simple-data-types-integers-bool-floats-char" id="copying-stack-data-eg-simple-data-types-integers-bool-floats-char">Copying Stack data eg. Simple Data Types (integers, bool, floats, char)</a></h1>
+<p>This works as integers have a known size and pushed on stack then off when the lifetime is over.</p>
+<pre><code>let x = 5;
+let y = x;
+
+println!(&quot;x = {}, y = {}&quot;, x, y);
+</code></pre>
+<p>Note:
+<strong>Borrow checker at compile time only (After this it's just machine code as per usual)</strong></p>
+<h1><a class="header" href="#what-can-rust-do" id="what-can-rust-do">What Can Rust Do?</a></h1>
+<h3><a class="header" href="#the-www" id="the-www">The WWW</a></h3>
+<p><strong>A framework for web applications (Rust + WebAssembly) <a href="https://yew.rs/">yew.rs</a></strong></p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// This won't run
+fn view(&amp;self) -&gt; Html {
+    html! {
+        &lt;div&gt;
+            &lt;button onclick=self.link.callback(|_| Msg::AddOne)&gt;{ &quot;+1&quot; }&lt;/button&gt;
+            &lt;p&gt;{ self.value }&lt;/p&gt;
+        &lt;/div&gt;
+    }
+}
+<span class="boring">}
+</span></code></pre></pre>
+<p><strong><a href="https://deno.land/">deno</a> (The new NodeJS) in TypeScript and with a Rust Runtime</strong></p>
+<p>Written by one of the original creators of NodeJS <a href="https://en.wikipedia.org/wiki/Ryan_Dahl">Ryan Dahl</a></p>
+<pre><code class="language-typescript">import { serve } from &quot;https://deno.land/std@0.60.0/http/server.ts&quot;;
+const s = serve({ port: 8000 });
+console.log(&quot;http://localhost:8000/&quot;);
+for await (const req of s) {
+  req.respond({ body: &quot;Hello World\n&quot; });
+}
+</code></pre>
+<p><strong>Actor based web framework <a href="https://actix.rs/">Actix</a></strong></p>
+<pre><pre class="playground"><code class="language-rust">// This won't run
+#[actix_rt::main]
+async fn main() -&gt; std::io::Result&lt;()&gt; {
+    HttpServer::new(|| {
+        App::new()
+            .route(&quot;/&quot;, web::get().to(greet))
+            .route(&quot;/{name}&quot;, web::get().to(greet))
+    })
+    .bind(&quot;127.0.0.1:8000&quot;)?
+    .run()
+    .await
+}
+</code></pre></pre>
+<h3><a class="header" href="#game-development" id="game-development">Game Development</a></h3>
+<p><a href="https://amethyst.rs">Amethyst</a>, <a href="https://ggez.rs">ggez</a>, <a href="https://www.piston.rs">piston</a></p>
+<p>Games Made from the ⬆️<br />
+<a href="https://github.com/bfops/playform">playform</a><br />
+<a href="https://github.com/PistonDevelopers/hematite">hematite</a></p>
+<h3><a class="header" href="#parallel-programming" id="parallel-programming">Parallel Programming</a></h3>
+<p><strong>Rust natively supports parallel programming but we also have some cool things:</strong></p>
+<p><a href="https://github.com/rayon-rs/rayon">rayon</a> simplified data parallelism with iterators in Rust. This automatically spins up threads on separate CPUs.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use rayon::prelude::*;
+
+fn sum_of_squares(input: &amp;[i32]) -&gt; i32 {
+    input.par_iter() // -&gt; Parallel iterator
+         .map(|&amp;i| i * i)
+         .sum()
+}
+<span class="boring">}
+</span></code></pre></pre>
+<h3><a class="header" href="#operating-systems" id="operating-systems">Operating Systems</a></h3>
+<p>A fully bootable operating system entirely in Rust with terminal, web browser, file browser.
+<a href="https://www.redox-os.org/">redox OS</a></p>
+<p>Doesn't really work yet but has a full book here</p>
+<h1><a class="header" href="#tooling" id="tooling">Tooling</a></h1>
+<p>As a comparision I've compared many Rust tools to a standard NodeJS environment</p>
+<h2><a class="header" href="#getting-started-with-rustup" id="getting-started-with-rustup">Getting started with <code>rustup</code></a></h2>
+<p>The toolchain installer and go to for cross compilation, version changes, profile management, plugins etc.</p>
+<p>The <code>nvm</code> or <code>n</code> version manager of Rust but more powerful</p>
+<pre><code>brew install rustup-init
+</code></pre>
+<p><a href="https://forge.rust-lang.org/infra/other-installation-methods.html">For Other Methods and GPG verification</a></p>
+<h2><a class="header" href="#the-package-manager-cargo-and-package-registry-cratesio" id="the-package-manager-cargo-and-package-registry-cratesio">The package manager <code>cargo</code> and package registry crates.io</a></h2>
+<p><code>cargo</code> is the package manager for Rust that pulls in packages from crates.io and provides many similar functions to <code>npm</code>.</p>
+<p>A simple registry can be implemented in Git.</p>
+<p><code>cargo</code> provides a number of commands for building, cleaning, installing and publishing packages.</p>
+<p>Some of the commands we will be using are:</p>
+<pre><code class="language-python">#Create a new cargo package
+cargo init
+
+#Run a binary or example of the local package
+cargo run
+
+#Build this package's and its dependencies' documentation
+cargo doc
+
+#Run the tests
+cargo test
+</code></pre>
+<h2><a class="header" href="#the-linter-rust-clippy-and-code-formatter-rustfmt" id="the-linter-rust-clippy-and-code-formatter-rustfmt">The <code>linter</code>, <code>rust-clippy</code> and code formatter <code>rustfmt</code></a></h2>
+<p><code>rustup</code> gives the possibility to install a linter and code formatter
+providing functions similar to <code>eslint</code> and <code>prettier</code> in JavaScript</p>
+<p>Linting by default with <code>rustc</code>
+<a href="https://doc.rust-lang.org/rustc/lints/groups.html">https://doc.rust-lang.org/rustc/lints/groups.html</a></p>
+<p><code>rustc main.rs -D nonstandard-style</code></p>
+<pre><code>error: variable `camelCase` should have a snake case name
+  --&gt; src/main.rs:30:9
+   |
+30 |     let camelCase = &quot;I'm a camel&quot;;
+   |         ^^^^^^^^^ help: convert the identifier to snake case: `camel_case`
+   |
+   = note: `-D non-snake-case` implied by `-D nonstandard-style`
+</code></pre>
+<h2><a class="header" href="#rustdoc-and-mdbook" id="rustdoc-and-mdbook"><code>rustdoc</code> and <code>mdbook</code></a></h2>
+<p>Rust source code supports <code>///</code> comment annotations to generate full blown documentation. <code>mdbook</code> creates a full book from markdown and code annotations.</p>
+<pre><pre class="playground"><code class="language-rust editable">/// You can have rust code between fences inside the comments
+/// If you pass --test to `rustdoc`, it will even test it for you!
+/// ```
+/// use doc::Person;
+/// let person = Person::new(&quot;name&quot;);
+/// ```
+
+</code></pre></pre>
+<h2><a class="header" href="#debugging-with-gbd-and-lldb" id="debugging-with-gbd-and-lldb">Debugging with <code>gbd</code> and <code>lldb</code></a></h2>
+<p>Rust provides debugging symbols when compiling so any native debugger will work. </p>
+<p>Both VSCode and IntelliJ have plugin support.</p>
+<blockquote>
+<p>rustc (:P), println!, dbg!, gdb, rr - in that order.</p>
+</blockquote>
+<h2><a class="header" href="#testing-and-tracing" id="testing-and-tracing">Testing and Tracing</a></h2>
+<p>No Libraries required however the <code>log</code> library and <code>dgb!</code> macro are very useful.</p>
+<p>Make use of test annotations:</p>
+<pre><pre class="playground"><code class="language-rust editable">#[cfg(test)]
+mod tests {
+    #[test]
+    fn exploration() {
+        assert_eq!(2 + 2, 4);
+    }
+
+    #[test]
+    fn another() {
+        panic!(&quot;Make this test fail&quot;);
+    }
+}
+</code></pre></pre>
+<p>We don't need a library for parallel tests just configure with:</p>
+<pre><code class="language-python">cargo test -- --test-threads=1
+</code></pre>
+<h1><a class="header" href="#community-1" id="community-1">Community</a></h1>
+<ul>
+<li>Large, helpful and beginner friendly</li>
+<li>No silly questions</li>
+<li>Library support</li>
+</ul>
+<h2><a class="header" href="#firefox" id="firefox">Firefox</a></h2>
+<h2><a class="header" href="#library-ecosystem" id="library-ecosystem">Library ecosystem</a></h2>
+<h2><a class="header" href="#arewe-sites" id="arewe-sites">AreWe... Sites</a></h2>
+<h1><a class="header" href="#good" id="good">Good</a></h1>
+<p>Good stuff</p>
+<h2><a class="header" href="#no-object-orientated-bloat" id="no-object-orientated-bloat">No object orientated bloat</a></h2>
+<ul>
+<li>structs and enums provide constructs for object orientated style</li>
 <li>? command</li>
 <li>enums/structs</li>
 <li>macros and language extensions
@@ -230,75 +487,8 @@ have_recipe(food).and_then(have_ingredients)
 <li>integrated docs</li>
 <li>references, slices, borrowing, *, &amp;, ownership</li>
 </ul>
-<table><thead><tr><th>Feature</th><th>Rust</th><th>JS</th></tr></thead><tbody>
-<tr><td>manifest</td><td>Cargo.toml</td><td>package.json</td></tr>
-<tr><td>lock file</td><td>Cargo.lock</td><td>package-lock.json</td></tr>
-<tr><td>variables</td><td>const, let</td><td>var, let, const</td></tr>
-<tr><td>functions</td><td>fn, |a|</td><td>function, =&gt;</td></tr>
-<tr><td>types</td><td>many</td><td>object ie {}</td></tr>
-</tbody></table>
-<h2><a class="header" href="#fizz-buzzing-1-100-with-rust-matchers" id="fizz-buzzing-1-100-with-rust-matchers">fizz buzzing 1-100 with Rust matchers</a></h2>
-<pre><pre class="playground"><code class="language-rust editable">fn main () {
-    for i in 1..=100 {
-        match (i % 3, i % 5) {
-            (0,0) =&gt; println!(&quot;FizzBuzz&quot;),
-            (0,_) =&gt; println!(&quot;Fizz&quot;),
-            (_,0) =&gt; println!(&quot;Buzz&quot;),
-            (_,_) =&gt; println!(&quot;{}&quot;, i)
-        }
-    }
-}
-</code></pre></pre>
-<h1><a class="header" href="#its-all-about-managing-memory" id="its-all-about-managing-memory">Its all about managing memory</a></h1>
-<ul>
-<li>Some languages have automatic collection of unused memory Java, NodeJS they keep track of references using memory</li>
-<li>Others require manual memory management like C, C++ allocations and removal must be done manually, fast but error prone, a double deallocate is a bug, a missed deallocate is a memory leak, sometimes this is also misused as a feature</li>
-<li>Rust uses a slightly different concept of ownership. Where variables are kept track by an owner and the value dropped once this single owner is out of scope</li>
-</ul>
-<pre><code>    {                      // s is not valid here, it’s not yet declared
-        let s = &quot;hello&quot;;   // s is valid from this point forward
-
-        // do stuff with s
-    }     
-                           // this scope is now over, and s is no longer valid
-</code></pre>
-<p>Note: In C++, this pattern of deallocating resources at the end of an item’s lifetime is sometimes called Resource Acquisition Is Initialization (RAII). The drop function in Rust will be familiar to you if you’ve used RAII patterns.</p>
-<h1><a class="header" href="#what-rust-does-a-move-instead-of-a-shallow-copy" id="what-rust-does-a-move-instead-of-a-shallow-copy">What Rust does? A move instead of a shallow copy</a></h1>
-<pre><code>    let s1 = String::from(&quot;hello&quot;);
-    let s2 = s1;
-
-    println!(&quot;{}, world!&quot;, s1);
-</code></pre>
-<p>s2 is not a shallow copy but the actual pointer to the previous s1 with a new name.</p>
-<p>This is very similar to the shadowing support in Rust.
-The above will throw a great compile time error preventing mistakes being made.</p>
-<h1><a class="header" href="#deep-copies-are-never-made-explicitly" id="deep-copies-are-never-made-explicitly">Deep copies are never made explicitly</a></h1>
-<pre><code>    let s1 = String::from(&quot;hello&quot;);
-    let s1 = String::from(&quot;bye&quot;);
-
-    println!(&quot;{}, world!&quot;, s1);
-</code></pre>
-<p>This is a shadowed var, enforced by the compiler it can help cleaner code when you want to process data.</p>
-<h1><a class="header" href="#copying-heap-data" id="copying-heap-data">Copying Heap Data</a></h1>
-<pre><code>    let s1 = String::from(&quot;hello&quot;);
-    let s2 = s1.clone();
-
-    println!(&quot;{}, world!&quot;, s1);
-</code></pre>
-<h1><a class="header" href="#copying-stack-data-eg-simple-data-types-integers-bool-floats-char" id="copying-stack-data-eg-simple-data-types-integers-bool-floats-char">Copying Stack data eg. Simple Data Types (integers, bool, floats, char)</a></h1>
-<p>This works as copying on the stack is </p>
-<pre><code>    let x = 5;
-    let y = x;
-
-    println!(&quot;x = {}, y = {}&quot;, x, y);
-</code></pre>
-<h1><a class="header" href="#borrow-checker-at-compile-time-only-after-this-its-just-machine-code-as-per-usual" id="borrow-checker-at-compile-time-only-after-this-its-just-machine-code-as-per-usual">Borrow checker at compile time only (After this it's just machine code as per usual)</a></h1>
-<h1><a class="header" href="#no-nulls" id="no-nulls">No Nulls</a></h1>
-<pre><pre class="playground"><code class="language-rust editable">enum Option&lt;T&gt; {
-    Some(T),
-    None,
-}
-</code></pre></pre>
+<p>try!</p>
+<p>and ?</p>
 <h1><a class="header" href="#extended-pub-syntax" id="extended-pub-syntax">Extended <code>pub</code> syntax</a></h1>
 <p>Most data types need to be explicitly defined as <code>pub</code> to be exposed and used.</p>
 <pre><code>pub struct Breakfast {
@@ -306,100 +496,8 @@ The above will throw a great compile time error preventing mistakes being made.<
     seasonal_fruit: String,
 }
 </code></pre>
-<h1><a class="header" href="#use-syntax-with-optional-as-syntax" id="use-syntax-with-optional-as-syntax">use syntax with optional <code>as</code> syntax</a></h1>
-<h1><a class="header" href="#tooling-" id="tooling-">Tooling 🛠️</a></h1>
-<h2><a class="header" href="#getting-started-with-rustup" id="getting-started-with-rustup">Getting started with (rustup)</a></h2>
-<p>The toolchain installer and go to for cross compilation, version changes, profile management, plugins etc.</p>
-<p>The <code>nvm</code> or <code>n</code> of Rust but more powerful</p>
-<pre><code>brew install rustup-init
-</code></pre>
-<p>Please verify installs with the Rust GPG signing key:
-https://forge.rust-lang.org/infra/other-installation-methods.html</p>
-<p>https://keybase.io/rust
-or
-https://static.rust-lang.org/rust-key.gpg.ascii</p>
-<h2><a class="header" href="#the-package-manager-cargo-and-package-registry-cratesio" id="the-package-manager-cargo-and-package-registry-cratesio">The package manager cargo and package registry crates.io</a></h2>
-<p><code>cargo</code> is the package manager for Rust that pulls in packages from crates.io and provides many similar functions to <code>npm</code>.</p>
-<p>A simple registry can be implemented in Git.</p>
-<p><code>cargo</code> provides a number of commands for building, cleaning, installing and publishing packages.</p>
-<p>Some of the commands we will be using are:</p>
-<pre><code class="language-python">#Create a new cargo package
-cargo init
-
-#Run a binary or example of the local package
-cargo run
-
-#Build this package's and its dependencies' documentation
-cargo doc
-
-#Run the tests
-cargo test
-</code></pre>
-<h2><a class="header" href="#the-linter-rustclippy-and-code-prettier-rustfmt" id="the-linter-rustclippy-and-code-prettier-rustfmt">The linter (rustclippy) and code prettier (rustfmt)</a></h2>
-<p><code>rustup</code> gives the possibility to install a linter and code formatter</p>
-<p>Linting by default with <code>rustc</code>
-https://doc.rust-lang.org/rustc/lints/groups.html</p>
-<p><code>rustc main.rs -D nonstandard-style</code></p>
-<p>eg.</p>
-<pre>
-<span style="color:red">error:</span> variable `camelCase` should have a snake case name
-  --> src/main.rs:30:9
-   |
-30 |     let camelCase = "I'm a camel";
-   |         <span style="color:red">^^^^^^^^^ help: convert the identifier to snake case: `camel_case`</span>
-   |
-   = note: `-D non-snake-case` implied by `-D nonstandard-style`
-</pre>
-<h2><a class="header" href="#docsrs-and-mdbook-jsdoc-and-gitbook" id="docsrs-and-mdbook-jsdoc-and-gitbook">docs.rs and mdbook (jsdoc and gitbook)</a></h2>
-<p>Rust documentation and doc generation for code. <code>mdbook</code> creates a full book from markdown and code annotations. </p>
-<h2><a class="header" href="#debugging-with-native-gdb-and-lldb" id="debugging-with-native-gdb-and-lldb">Debugging with native (gdb) and (lldb)</a></h2>
-<p>Rust provides debugging symbols when compiling so any native debugger will work.</p>
-<p>Both VSCode and IntelliJ have plugin support.</p>
-<blockquote>
-<p>rustc (:P), println!, dbg!, gdb, rr - in that order.</p>
-</blockquote>
-<h2><a class="header" href="#testing" id="testing">Testing</a></h2>
-<p>No Libraries required however log and ... are very popular libraries</p>
-<p>Make use of test annotations and even documentation based testing</p>
-<pre><pre class="playground"><code class="language-rust editable">#[cfg(test)]
-mod tests {
-    #[test]
-    fn exploration() {
-        assert_eq!(2 + 2, 4);
-    }
-
-    #[test]
-    fn another() {
-        panic!(&quot;Make this test fail&quot;);
-    }
-}
-</code></pre></pre>
-<p>We don't need a library for parallel tests just configure with:</p>
-<pre><code class="language-python">cargo test -- --test-threads=1
-</code></pre>
-<ul>
-<li>rustup</li>
-<li>rust linting</li>
-<li>rust cli</li>
-<li>rust package manager and crates.io</li>
-<li>rust documentation</li>
-<li>https://play.rust-lang.org/?version=nightly&amp;mode=debug&amp;edition=2018</li>
-<li>This document was created with mdbook a rust-lang project</li>
-</ul>
-<pre><pre class="playground"><code class="language-rust editable">// You can have rust code between fences inside the comments
-// If you pass --test to `rustdoc`, it will even test it for you!
-use doc::Person;
-let person = Person::new(&quot;name&quot;);
-</code></pre></pre>
-<h1><a class="header" href="#cargo-workspaces" id="cargo-workspaces">cargo workspaces?</a></h1>
-<p>https://doc.rust-lang.org/book/ch07-00-managing-growing-projects-with-packages-crates-and-modules.html</p>
-<h1><a class="header" href="#community" id="community">Community</a></h1>
-<ul>
-<li>large, helpful and beginner friendly</li>
-<li>libraries</li>
-</ul>
-<h1><a class="header" href="#good" id="good">Good</a></h1>
-<p>Good stuff</p>
+<p>options - Some(T), None, unwrap will panic if None, 
+- self.job?.phone_number?.area_code </p>
 <h1><a class="header" href="#bad" id="bad">Bad?</a></h1>
 <h1><a class="header" href="#shadowing-and-mutability" id="shadowing-and-mutability">shadowing and mutability</a></h1>
 <h1><a class="header" href="#complexity-of-asyncawait-syntax-and-runtimes-do-i-choose-a-thread-or-use-async-await" id="complexity-of-asyncawait-syntax-and-runtimes-do-i-choose-a-thread-or-use-async-await">complexity of async/await syntax and runtimes (Do I choose a thread or use async await)</a></h1>
@@ -418,14 +516,67 @@ let person = Person::new(&quot;name&quot;);
 <p>We can used dbg!() ?</p>
 <h1><a class="header" href="#rust-lldb" id="rust-lldb">rust-lldb</a></h1>
 <p>rust-lldb</p>
-<p>https://tourofrust.com/TOC_en.html</p>
 <h1><a class="header" href="#ugly" id="ugly">Ugly</a></h1>
 <p>Some ugly stuff</p>
 <ul>
 <li>Prototyping is just going to be slow (Ruby, Python)</li>
 <li>It has some time before it has specialised libaries ie. Machine learning libs in Python</li>
-<li>Time to lear</li>
+<li>Time to learn the borrow checker and management of code</li>
 </ul>
+<h1><a class="header" href="#are-we-going-to-approach-the-npm-package-explosion" id="are-we-going-to-approach-the-npm-package-explosion">Are we going to approach the npm package explosion?</a></h1>
+<h1><a class="header" href="#cool-things" id="cool-things">Cool Things</a></h1>
+<p>https://wiki.mozilla.org/Oxidation#Rust_Components</p>
+<h2><a class="header" href="#simplified-parallel-computing-with-rayon" id="simplified-parallel-computing-with-rayon">Simplified parallel computing with <code>Rayon</code></a></h2>
+<p>The borrow checker and thread safety and highly concurrent nature of Rust allows powerful tools like <code>Rayon</code> to simplify the way we think about problems</p>
+<pre><pre class="playground"><code class="language-rust editable">
+fn sum_of_squares(input: &amp;[i32]) -&gt; i32 {
+    input.par_iter() // &lt;-- just change that!
+         .map(|&amp;i| i * i)
+         .sum()
+}
+
+</code></pre></pre>
+<pre><code>
+## WASI - The web assembly application  interface 
+
+- Allows you to compile web assembly and run in Node 14
+- You can do Rust -&gt; WASM -&gt; NodeJS invocation
+
+https://nodejs.org/api/wasi.html
+
+
+## A full OS in Rust
+
+https://www.redox-os.org/
+
+
+## Servo the Browser Engine
+
+https://servo.org/
+
+
+## Firecracker VMS - Used by AWS
+
+https://firecracker-microvm.github.io/
+
+
+# Citybound simulator
+
+https://aeplay.org/citybound</code></pre>
+<h1><a class="header" href="#references-and-cool-stuff" id="references-and-cool-stuff">References and Cool Stuff</a></h1>
+<h2><a class="header" href="#mdbook-a-rust-lang-project-i-used-to-create-this-book" id="mdbook-a-rust-lang-project-i-used-to-create-this-book">mdBook (A rust-lang project I used to create this book)</a></h2>
+<p>https://rust-lang.github.io/mdBook</p>
+<h2><a class="header" href="#interactive-rust-tour" id="interactive-rust-tour">Interactive Rust tour</a></h2>
+<p>https://tourofrust.com</p>
+<h2><a class="header" href="#the-are-we-yet" id="the-are-we-yet">The Are We Yet...</a></h2>
+<p>http://www.arewelearningyet.com</p>
+<p>https://wiki.mozilla.org/Areweyet</p>
+<p>GUI status
+https://areweguiyet.com/</p>
+<p>Web status
+https://www.arewewebyet.org/</p>
+<p>Game development status
+https://arewegameyet.rs/</p>
 
                     </main>
 
@@ -451,7 +602,7 @@ let person = Person::new(&quot;name&quot;);
         
         <!-- Livereload script (if served using the cli tool) -->
         <script type="text/javascript">
-            var socket = new WebSocket("ws://localhost:8080/__livereload");
+            var socket = new WebSocket("ws://localhost:3000/__livereload");
             socket.onmessage = function (event) {
                 if (event.data === "reload") {
                     socket.close();
@@ -467,10 +618,6 @@ let person = Person::new(&quot;name&quot;);
 
         
 
-        
-        <script type="text/javascript">
-            window.playground_line_numbers = true;
-        </script>
         
 
         
