@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Ugly - Rust Intro</title>
+        <title>Conclusion - Rust Intro</title>
         
         
 
@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1_why_rust.html"><strong aria-hidden="true">1.</strong> Why Rust?</a></li><li class="chapter-item expanded "><a href="chapter_2_the_language.html"><strong aria-hidden="true">2.</strong> Language</a></li><li class="chapter-item expanded "><a href="chapter_2-1_the_language.html"><strong aria-hidden="true">3.</strong> The Borrow Checker</a></li><li class="chapter-item expanded "><a href="chapter_1-1_what_is_used_for.html"><strong aria-hidden="true">4.</strong> Cool Stuff</a></li><li class="chapter-item expanded "><a href="chapter_3_tooling.html"><strong aria-hidden="true">5.</strong> Tooling</a></li><li class="chapter-item expanded "><a href="chapter_4_community.html"><strong aria-hidden="true">6.</strong> Community</a></li><li class="chapter-item expanded "><a href="chapter_5_good.html"><strong aria-hidden="true">7.</strong> Good</a></li><li class="chapter-item expanded "><a href="chapter_6_bad.html"><strong aria-hidden="true">8.</strong> Bad/Hard</a></li><li class="chapter-item expanded "><a href="chapter_6_ugly.html" class="active"><strong aria-hidden="true">9.</strong> Ugly</a></li><li class="chapter-item expanded "><a href="chapter_7_cool_things.html"><strong aria-hidden="true">10.</strong> Cool Things</a></li><li class="chapter-item expanded "><a href="references.html"><strong aria-hidden="true">11.</strong> References</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="chap_1_why_rust.html"><strong aria-hidden="true">1.</strong> Why Rust?</a></li><li class="chapter-item expanded "><a href="chap_2_the_language.html"><strong aria-hidden="true">2.</strong> The Language</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chap_2-1_compiler_in_action.html"><strong aria-hidden="true">2.1.</strong> The Compiler in Action</a></li><li class="chapter-item expanded "><a href="chap_2-2_the_borrow_checker.html"><strong aria-hidden="true">2.2.</strong> The Borrow Checker</a></li><li class="chapter-item expanded "><a href="chap_3_rust_examples.html"><strong aria-hidden="true">2.3.</strong> Real World Rust</a></li></ol></li><li class="chapter-item expanded "><a href="chap_4_tooling.html"><strong aria-hidden="true">3.</strong> Tooling</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chap_4-1_tooling.html"><strong aria-hidden="true">3.1.</strong> Extras</a></li></ol></li><li class="chapter-item expanded "><a href="chap_5_conclusion.html" class="active"><strong aria-hidden="true">4.</strong> Conclusion</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -155,29 +155,73 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#ugly" id="ugly">Ugly</a></h1>
-<p>Some ugly stuff</p>
+                        <h1><a class="header" href="#conclusion" id="conclusion">Conclusion</a></h1>
+<p><em>Something I found on <code>/r/rust</code> which sums up my experience so far:</em></p>
+<blockquote>
+<p>&quot;In Rust you exchange some down-the-road complexity for some upfront complexity&quot;</p>
+</blockquote>
+<h2><a class="header" href="#where-is-rust-useful" id="where-is-rust-useful">Where is Rust Useful?</a></h2>
 <ul>
-<li>Prototyping is just going to be slow (Ruby, Python)</li>
-<li>It has some time before it has specialised libaries ie. Machine learning libs in Python</li>
-<li>Time to learn the borrow checker and management of code</li>
+<li>Critical applications/components</li>
+<li>Realtime applications where memory management and concurrency is key</li>
+<li>In reducing memory leaks, race conditions and other hard to debug problems</li>
 </ul>
-<h1><a class="header" href="#are-we-going-to-approach-the-npm-package-explosion" id="are-we-going-to-approach-the-npm-package-explosion">Are we going to approach the npm package explosion?</a></h1>
+<h2><a class="header" href="#how-you-get-there" id="how-you-get-there">How You Get There?</a></h2>
+<ul>
+<li>Start with critical components</li>
+<li>Components of new critical systems</li>
+<li>Make use of foreign interfaces ie. C,C++ or even WASM</li>
+</ul>
+<p><strong>A potential flow of work I see is:</strong></p>
+<ol>
+<li>Proof of concept in JavaScript, Python or another higher level &quot;relaxed language&quot;</li>
+<li>Verify and Test the POC</li>
+<li>Implement fully in Rust</li>
+<li>Profit!</li>
+</ol>
+<h2><a class="header" href="#potential-issues" id="potential-issues">Potential Issues</a></h2>
+<ul>
+<li>Prototyping is going to be slower with the compiler and strict type checking:
+<ul>
+<li>Ruby, NodeJS, Python probably more suitable</li>
+</ul>
+</li>
+<li>Current lack of more niche use cases eg. Machine learning libraries available in Python</li>
+<li>Significant time to learn the borrow checker and Rust memory management paradigm</li>
+<li>Are we going to have a package explosion like <code>npm</code>?</li>
+</ul>
+<h2><a class="header" href="#what-i-didnt-cover" id="what-i-didnt-cover">What I didn't cover</a></h2>
+<p>There is quite a lot of content I didn't cover in this intro including:</p>
+<ul>
+<li>Lifetimes (related to the memory management)</li>
+<li>Generics</li>
+<li>Managing Strings (Strings are complicated if handled correctly)</li>
+<li>Declarative and Procedural Macros (Meta-programming Goodness)</li>
+<li><code>unsafe</code> (C interop or dangerous memory manual management!)</li>
+</ul>
+<h2><a class="header" href="#learning-more" id="learning-more">Learning More</a></h2>
+<ul>
+<li><a href="https://www.rust-lang.org/learns">Choose your learning path</a>
+<ul>
+<li><a href="https://doc.rust-lang.org/book/">The Rust Book</a></li>
+<li><a href="https://doc.rust-lang.org/stable/rust-by-example/">Rust by Example</a></li>
+<li>Small exercises: <a href="https://github.com/rust-lang/rustlings/">Rustlings</a></li>
+<li><a href="https://doc.rust-lang.org/stable/reference/">The Rust Reference</a></li>
+</ul>
+</li>
+<li><a href="https://tourofrust.com">Interactive Rust tour</a></li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="chapter_6_bad.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="chap_4-1_tooling.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
-                        
-                            <a rel="next" href="chapter_7_cool_things.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
                         
 
                         <div style="clear: both"></div>
@@ -187,39 +231,24 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="chapter_6_bad.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="chap_4-1_tooling.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
-                
-                    <a rel="next" href="chapter_7_cool_things.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
                 
             </nav>
 
         </div>
 
         
-        <!-- Livereload script (if served using the cli tool) -->
+
+        
+
+        
         <script type="text/javascript">
-            var socket = new WebSocket("ws://localhost:3000/__livereload");
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
+            window.playground_line_numbers = true;
         </script>
-        
-
-        
-
         
 
         

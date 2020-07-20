@@ -4,7 +4,7 @@
 
 use rayon::prelude::*;
 use orion::pwhash;
-
+use serde_json::json;
 
 /// Returns a person with the name given them
 ///
@@ -30,13 +30,13 @@ use orion::pwhash;
 //     })
 // }
 
-fn hash_of_hashes(input: Vec<&str>) -> String {
-    input.par_iter() // Rayon is activated here!
+fn hash_of_hashes(input: Vec<&str>) -> () {
+    input.iter() // Rayon is activated here!
         .map(|i| {
             // *i
-            let r: () = pwhash::hash_password(i, 3, 1<<16)?;
+            let r = pwhash::hash_password("h", 3, 1<<16).expect("To hash");
         })
-        .collect::<String>()
+        .collect();
 }
 
 fn main() {
@@ -153,6 +153,30 @@ fn main() {
 
     let mut a: Option<i32> = Some(2);
     a = None;
+
+
+    use serde_json::json;
+
+    let john = json!({
+        "name": "John Doe",
+        "age": 43,
+        "phones": [
+            "+44 1234567",
+        ]
+    });
+
+    // Then we get even better
+
+    let full_name = "John Doe";
+    let age_last_year = 42;
+    
+    let john = json!({
+        "name": full_name,
+        "age": age_last_year + 1,
+        "phones": [
+            format!("+44 {}", random_phone())
+        ]
+    });
 
 }
 

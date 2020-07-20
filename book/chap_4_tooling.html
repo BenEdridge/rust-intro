@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1_why_rust.html"><strong aria-hidden="true">1.</strong> Why Rust?</a></li><li class="chapter-item expanded "><a href="chapter_2_the_language.html"><strong aria-hidden="true">2.</strong> Language</a></li><li class="chapter-item expanded "><a href="chapter_2-1_the_language.html"><strong aria-hidden="true">3.</strong> The Borrow Checker</a></li><li class="chapter-item expanded "><a href="chapter_1-1_what_is_used_for.html"><strong aria-hidden="true">4.</strong> Cool Stuff</a></li><li class="chapter-item expanded "><a href="chapter_3_tooling.html" class="active"><strong aria-hidden="true">5.</strong> Tooling</a></li><li class="chapter-item expanded "><a href="chapter_4_community.html"><strong aria-hidden="true">6.</strong> Community</a></li><li class="chapter-item expanded "><a href="chapter_5_good.html"><strong aria-hidden="true">7.</strong> Good</a></li><li class="chapter-item expanded "><a href="chapter_6_bad.html"><strong aria-hidden="true">8.</strong> Bad/Hard</a></li><li class="chapter-item expanded "><a href="chapter_6_ugly.html"><strong aria-hidden="true">9.</strong> Ugly</a></li><li class="chapter-item expanded "><a href="chapter_7_cool_things.html"><strong aria-hidden="true">10.</strong> Cool Things</a></li><li class="chapter-item expanded "><a href="references.html"><strong aria-hidden="true">11.</strong> References</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="chap_1_why_rust.html"><strong aria-hidden="true">1.</strong> Why Rust?</a></li><li class="chapter-item expanded "><a href="chap_2_the_language.html"><strong aria-hidden="true">2.</strong> The Language</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chap_2-1_compiler_in_action.html"><strong aria-hidden="true">2.1.</strong> The Compiler in Action</a></li><li class="chapter-item expanded "><a href="chap_2-2_the_borrow_checker.html"><strong aria-hidden="true">2.2.</strong> The Borrow Checker</a></li><li class="chapter-item expanded "><a href="chap_3_rust_examples.html"><strong aria-hidden="true">2.3.</strong> Real World Rust</a></li></ol></li><li class="chapter-item expanded "><a href="chap_4_tooling.html" class="active"><strong aria-hidden="true">3.</strong> Tooling</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chap_4-1_tooling.html"><strong aria-hidden="true">3.1.</strong> Extras</a></li></ol></li><li class="chapter-item expanded "><a href="chap_5_conclusion.html"><strong aria-hidden="true">4.</strong> Conclusion</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -155,20 +155,23 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#tooling" id="tooling">Tooling</a></h1>
-<p>As a comparision I've compared many Rust tools to a standard NodeJS environment</p>
-<h2><a class="header" href="#getting-started-with-rustup" id="getting-started-with-rustup">Getting started with <code>rustup</code></a></h2>
-<p>The toolchain installer and go to for cross compilation, version changes, profile management, plugins etc.</p>
-<p>The <code>nvm</code> or <code>n</code> version manager of Rust but more powerful</p>
+                        <h1><a class="header" href="#tooling-" id="tooling-">Tooling 🛠️</a></h1>
+<p>Below I have compared Rust tools to those in standard NodeJS environment.</p>
+<h2><a class="header" href="#getting-started-with-a-hrefhttpsrustuprsrustupa" id="getting-started-with-a-hrefhttpsrustuprsrustupa">Getting started with <a href="https://rustup.rs">rustup</a></a></h2>
+<p>The tool-chain installer and go to for cross-compilation, version updates, profile management and plugins.</p>
+<p>The <code>nvm</code> or <code>n</code> version manager of Rust but heap more powerful</p>
 <pre><code>brew install rustup-init
 </code></pre>
 <p><a href="https://forge.rust-lang.org/infra/other-installation-methods.html">For Other Methods and GPG verification</a></p>
-<h2><a class="header" href="#the-package-manager-cargo-and-package-registry-cratesio" id="the-package-manager-cargo-and-package-registry-cratesio">The package manager <code>cargo</code> and package registry crates.io</a></h2>
-<p><code>cargo</code> is the package manager for Rust that pulls in packages from crates.io and provides many similar functions to <code>npm</code>.</p>
+<p>eg. Install the nightly version of Rust</p>
+<pre><code>rustup toolchain install nightly
+</code></pre>
+<h2><a class="header" href="#the-package-manager-a-hrefhttpsdocrust-langorgcargocargoa-and-package-registry-a-hrefhttpscratesiocratesioa" id="the-package-manager-a-hrefhttpsdocrust-langorgcargocargoa-and-package-registry-a-hrefhttpscratesiocratesioa">The package manager <a href="https://doc.rust-lang.org/cargo/">cargo</a> and package registry <a href="https://crates.io/">crates.io</a></a></h2>
+<p><code>cargo</code> is the package manager for Rust that pulls in packages from <a href="https://crates.io/">crates.io</a> and provides many similar functions to <code>npm</code>.</p>
 <p>A simple registry can be implemented in Git.</p>
 <p><code>cargo</code> provides a number of commands for building, cleaning, installing and publishing packages.</p>
 <p>Some of the commands we will be using are:</p>
-<pre><code class="language-python">#Create a new cargo package
+<pre><code class="language-python">#Create a new cargo binary
 cargo init
 
 #Run a binary or example of the local package
@@ -180,68 +183,19 @@ cargo doc
 #Run the tests
 cargo test
 </code></pre>
-<h2><a class="header" href="#the-linter-rust-clippy-and-code-formatter-rustfmt" id="the-linter-rust-clippy-and-code-formatter-rustfmt">The <code>linter</code>, <code>rust-clippy</code> and code formatter <code>rustfmt</code></a></h2>
-<p><code>rustup</code> gives the possibility to install a linter and code formatter
-providing functions similar to <code>eslint</code> and <code>prettier</code> in JavaScript</p>
-<p>Linting by default with <code>rustc</code>
-<a href="https://doc.rust-lang.org/rustc/lints/groups.html">https://doc.rust-lang.org/rustc/lints/groups.html</a></p>
-<p><code>rustc main.rs -D nonstandard-style</code></p>
-<pre><code>error: variable `camelCase` should have a snake case name
-  --&gt; src/main.rs:30:9
-   |
-30 |     let camelCase = &quot;I'm a camel&quot;;
-   |         ^^^^^^^^^ help: convert the identifier to snake case: `camel_case`
-   |
-   = note: `-D non-snake-case` implied by `-D nonstandard-style`
-</code></pre>
-<h2><a class="header" href="#rustdoc-and-mdbook" id="rustdoc-and-mdbook"><code>rustdoc</code> and <code>mdbook</code></a></h2>
-<p>Rust source code supports <code>///</code> comment annotations to generate full blown documentation. <code>mdbook</code> creates a full book from markdown and code annotations.</p>
-<pre><pre class="playground"><code class="language-rust editable">/// You can have rust code between fences inside the comments
-/// If you pass --test to `rustdoc`, it will even test it for you!
-/// ```
-/// use doc::Person;
-/// let person = Person::new(&quot;name&quot;);
-/// ```
-
-</code></pre></pre>
-<h2><a class="header" href="#debugging-with-gbd-and-lldb" id="debugging-with-gbd-and-lldb">Debugging with <code>gbd</code> and <code>lldb</code></a></h2>
-<p>Rust provides debugging symbols when compiling so any native debugger will work. </p>
-<p>Both VSCode and IntelliJ have plugin support.</p>
-<blockquote>
-<p>rustc (:P), println!, dbg!, gdb, rr - in that order.</p>
-</blockquote>
-<h2><a class="header" href="#testing-and-tracing" id="testing-and-tracing">Testing and Tracing</a></h2>
-<p>No Libraries required however the <code>log</code> library and <code>dgb!</code> macro are very useful.</p>
-<p>Make use of test annotations:</p>
-<pre><pre class="playground"><code class="language-rust editable">#[cfg(test)]
-mod tests {
-    #[test]
-    fn exploration() {
-        assert_eq!(2 + 2, 4);
-    }
-
-    #[test]
-    fn another() {
-        panic!(&quot;Make this test fail&quot;);
-    }
-}
-</code></pre></pre>
-<p>We don't need a library for parallel tests just configure with:</p>
-<pre><code class="language-python">cargo test -- --test-threads=1
-</code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="chapter_1-1_what_is_used_for.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="chap_3_rust_examples.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="chapter_4_community.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="chap_4-1_tooling.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -253,13 +207,13 @@ mod tests {
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="chapter_1-1_what_is_used_for.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="chap_3_rust_examples.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="chapter_4_community.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="chap_4-1_tooling.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
@@ -268,24 +222,13 @@ mod tests {
         </div>
 
         
-        <!-- Livereload script (if served using the cli tool) -->
+
+        
+
+        
         <script type="text/javascript">
-            var socket = new WebSocket("ws://localhost:3000/__livereload");
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
+            window.playground_line_numbers = true;
         </script>
-        
-
-        
-
         
 
         

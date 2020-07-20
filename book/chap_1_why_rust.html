@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Community - Rust Intro</title>
+        <title>Why Rust? - Rust Intro</title>
         
         
 
@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1_why_rust.html"><strong aria-hidden="true">1.</strong> Why Rust?</a></li><li class="chapter-item expanded "><a href="chapter_2_the_language.html"><strong aria-hidden="true">2.</strong> Language</a></li><li class="chapter-item expanded "><a href="chapter_2-1_the_language.html"><strong aria-hidden="true">3.</strong> The Borrow Checker</a></li><li class="chapter-item expanded "><a href="chapter_1-1_what_is_used_for.html"><strong aria-hidden="true">4.</strong> Cool Stuff</a></li><li class="chapter-item expanded "><a href="chapter_3_tooling.html"><strong aria-hidden="true">5.</strong> Tooling</a></li><li class="chapter-item expanded "><a href="chapter_4_community.html" class="active"><strong aria-hidden="true">6.</strong> Community</a></li><li class="chapter-item expanded "><a href="chapter_5_good.html"><strong aria-hidden="true">7.</strong> Good</a></li><li class="chapter-item expanded "><a href="chapter_6_bad.html"><strong aria-hidden="true">8.</strong> Bad/Hard</a></li><li class="chapter-item expanded "><a href="chapter_6_ugly.html"><strong aria-hidden="true">9.</strong> Ugly</a></li><li class="chapter-item expanded "><a href="chapter_7_cool_things.html"><strong aria-hidden="true">10.</strong> Cool Things</a></li><li class="chapter-item expanded "><a href="references.html"><strong aria-hidden="true">11.</strong> References</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="chap_1_why_rust.html" class="active"><strong aria-hidden="true">1.</strong> Why Rust?</a></li><li class="chapter-item expanded "><a href="chap_2_the_language.html"><strong aria-hidden="true">2.</strong> The Language</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chap_2-1_compiler_in_action.html"><strong aria-hidden="true">2.1.</strong> The Compiler in Action</a></li><li class="chapter-item expanded "><a href="chap_2-2_the_borrow_checker.html"><strong aria-hidden="true">2.2.</strong> The Borrow Checker</a></li><li class="chapter-item expanded "><a href="chap_3_rust_examples.html"><strong aria-hidden="true">2.3.</strong> Real World Rust</a></li></ol></li><li class="chapter-item expanded "><a href="chap_4_tooling.html"><strong aria-hidden="true">3.</strong> Tooling</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chap_4-1_tooling.html"><strong aria-hidden="true">3.1.</strong> Extras</a></li></ol></li><li class="chapter-item expanded "><a href="chap_5_conclusion.html"><strong aria-hidden="true">4.</strong> Conclusion</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -155,28 +155,40 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#community" id="community">Community</a></h1>
+                        <h1><a class="header" href="#rust-" id="rust-">Rust? 🦀</a></h1>
+<h2><a class="header" href="#history-and-community" id="history-and-community">History and Community</a></h2>
 <ul>
-<li>Large, helpful and beginner friendly</li>
-<li>No silly questions</li>
-<li>Library support</li>
+<li>2010 - kicked off by Mozilla Research</li>
+<li>A running favourite in Stack Overflow's yearly <a href="https://insights.stackoverflow.com/survey/2019#most-loved-dreaded-and-wanted">survey</a></li>
+<li>Large, helpful and beginner friendly community
+<ul>
+<li><a href="https://www.reddit.com/r/rust/">r/rust on reddit</a></li>
+<li><a href="https://users.rust-lang.org/">Rust forums</a></li>
 </ul>
-<h2><a class="header" href="#firefox" id="firefox">Firefox</a></h2>
-<h2><a class="header" href="#library-ecosystem" id="library-ecosystem">Library ecosystem</a></h2>
-<h2><a class="header" href="#arewe-sites" id="arewe-sites">AreWe... Sites</a></h2>
+</li>
+<li>Huge selection of 3rd-party <a href="http://crates.io/">packages</a></li>
+</ul>
+<h2><a class="header" href="#the-motivation" id="the-motivation">The Motivation</a></h2>
+<ul>
+<li>Microsoft <a href="https://msrc-blog.microsoft.com/2019/07/18/we-need-a-safer-systems-programming-language/">reported</a> that 70%~ of vulnerabilities assigned a CVE are memory safety issues</li>
+<li>Google Chromium <a href="https://www.chromium.org/Home/chromium-security/memory-safety">reports</a> a similar figure</li>
+</ul>
+<p>The goal of Rust is to prevent these issues as early as possible.</p>
+<h2><a class="header" href="#users-of-rust" id="users-of-rust">Users of Rust</a></h2>
+<ul>
+<li>Mozilla Firefox - 8% of the code base (2 million+ lines) see: <a href="https://wiki.mozilla.org/Oxidation">Oxidation</a></li>
+<li>Amazon - <a href="https://firecracker-microvm.github.io/">Firecracker</a> microVMs in AWS Lambda and AWS Fargate</li>
+<li>Facebook - The <a href="https://github.com/libra/libra">libra</a> Blockchain project</li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="chapter_3_tooling.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                                <i class="fa fa-angle-left"></i>
-                            </a>
-                        
 
                         
-                            <a rel="next" href="chapter_5_good.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="chap_2_the_language.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -188,13 +200,9 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="chapter_3_tooling.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                        <i class="fa fa-angle-left"></i>
-                    </a>
-                
 
                 
-                    <a rel="next" href="chapter_5_good.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="chap_2_the_language.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
@@ -203,24 +211,13 @@
         </div>
 
         
-        <!-- Livereload script (if served using the cli tool) -->
+
+        
+
+        
         <script type="text/javascript">
-            var socket = new WebSocket("ws://localhost:3000/__livereload");
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
+            window.playground_line_numbers = true;
         </script>
-        
-
-        
-
         
 
         

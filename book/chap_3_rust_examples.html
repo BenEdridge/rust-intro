@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Language - Rust Intro</title>
+        <title>Real World Rust - Rust Intro</title>
         
         
 
@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1_why_rust.html"><strong aria-hidden="true">1.</strong> Why Rust?</a></li><li class="chapter-item expanded "><a href="chapter_2_the_language.html" class="active"><strong aria-hidden="true">2.</strong> Language</a></li><li class="chapter-item expanded "><a href="chapter_2-1_the_language.html"><strong aria-hidden="true">3.</strong> The Borrow Checker</a></li><li class="chapter-item expanded "><a href="chapter_1-1_what_is_used_for.html"><strong aria-hidden="true">4.</strong> Cool Stuff</a></li><li class="chapter-item expanded "><a href="chapter_3_tooling.html"><strong aria-hidden="true">5.</strong> Tooling</a></li><li class="chapter-item expanded "><a href="chapter_4_community.html"><strong aria-hidden="true">6.</strong> Community</a></li><li class="chapter-item expanded "><a href="chapter_5_good.html"><strong aria-hidden="true">7.</strong> Good</a></li><li class="chapter-item expanded "><a href="chapter_6_bad.html"><strong aria-hidden="true">8.</strong> Bad/Hard</a></li><li class="chapter-item expanded "><a href="chapter_6_ugly.html"><strong aria-hidden="true">9.</strong> Ugly</a></li><li class="chapter-item expanded "><a href="chapter_7_cool_things.html"><strong aria-hidden="true">10.</strong> Cool Things</a></li><li class="chapter-item expanded "><a href="references.html"><strong aria-hidden="true">11.</strong> References</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="chap_1_why_rust.html"><strong aria-hidden="true">1.</strong> Why Rust?</a></li><li class="chapter-item expanded "><a href="chap_2_the_language.html"><strong aria-hidden="true">2.</strong> The Language</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chap_2-1_compiler_in_action.html"><strong aria-hidden="true">2.1.</strong> The Compiler in Action</a></li><li class="chapter-item expanded "><a href="chap_2-2_the_borrow_checker.html"><strong aria-hidden="true">2.2.</strong> The Borrow Checker</a></li><li class="chapter-item expanded "><a href="chap_3_rust_examples.html" class="active"><strong aria-hidden="true">2.3.</strong> Real World Rust</a></li></ol></li><li class="chapter-item expanded "><a href="chap_4_tooling.html"><strong aria-hidden="true">3.</strong> Tooling</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chap_4-1_tooling.html"><strong aria-hidden="true">3.1.</strong> Extras</a></li></ol></li><li class="chapter-item expanded "><a href="chap_5_conclusion.html"><strong aria-hidden="true">4.</strong> Conclusion</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -155,26 +155,10 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#the-language" id="the-language">The Language</a></h1>
-<p>Syntax is quite normal, nothing crazy</p>
-<h2><a class="header" href="#the-borrow-checker-in-action" id="the-borrow-checker-in-action">The Borrow Checker in Action</a></h2>
-<p>Rust keeps track owners of memory (That is a variable owns a piece of memory and has a lifetime during the program).
-During stages of execution that memory may be freed after use or borrowed during modification.</p>
-<pre><pre class="playground"><code class="language-rust editable">fn main(){
-    let s = String::from(&quot;hello&quot;);
-    borrow_and_print(s);
-    // uncomment below to see the borrow checker in action
-    //println!(&quot;{}&quot;, s);
-}
-
-// s is string stored on the heap and borrowed by this function
-fn borrow_and_print(s: String) {
-    println!(&quot;{}&quot;, s);
-}
-</code></pre></pre>
-<h2><a class="header" href="#awesome-pattern-matching-syntax-with-match" id="awesome-pattern-matching-syntax-with-match">Awesome pattern matching syntax with <code>match</code></a></h2>
+                        <h1><a class="header" href="#rust-in-action" id="rust-in-action">Rust in Action</a></h1>
+<h3><a class="header" href="#you-will-see-pattern-matching-a-lot" id="you-will-see-pattern-matching-a-lot">You will see pattern matching a lot!</a></h3>
 <p>From the Rust Book:</p>
-<pre><pre class="playground"><code class="language-rust editable">fn main () {
+<pre><pre class="playground"><code class="language-rust">fn main () {
     for i in 1..=100 {
         match (i % 3, i % 5) {
             (0,0) =&gt; println!(&quot;FizzBuzz&quot;),
@@ -185,61 +169,120 @@ fn borrow_and_print(s: String) {
     }
 }
 </code></pre></pre>
-<h2><a class="header" href="#immutable-by-default" id="immutable-by-default">Immutable by default</a></h2>
-<pre><pre class="playground"><code class="language-rust"><span class="boring">fn main(){
-</span>// Mutable variables must use explicit `mut`
-let mut i = 42;
-i+=1;
-
-println!(&quot;{}&quot;,i);
-<span class="boring">}
-</span></code></pre></pre>
-<h2><a class="header" href="#no-nulls---optionalsresult-instead" id="no-nulls---optionalsresult-instead">No Nulls - Optionals/Result instead</a></h2>
-<pre><pre class="playground"><code class="language-rust editable">use std::fs::read_to_string;
-use std::fs::read_dir;
-
-fn main(){
-
-    //let result = read_to_string(&quot;nothing.txt&quot;);
-    let result = read_to_string(&quot;.gitignore&quot;);
-
-    // match result {
-    //     Ok(f) =&gt; println!(&quot;File Contents: {}&quot;, f),
-    //     Err(e) =&gt; println!(&quot;Error: {}&quot;, e)
-    // }
-
-    // Can also use let result = match (with shadowing)
-    let result = match result {
-        Ok(f) =&gt; f,
-        Err(e) =&gt; panic!(&quot;Problem opening the file: {:?}&quot;, e)
-    };
-
-    println!(&quot;File Contents: {}&quot;, result);
-}
-</code></pre></pre>
-<h1><a class="header" href="#integrated-testing-more-on-this-later" id="integrated-testing-more-on-this-later">Integrated Testing (More on this later)</a></h1>
+<h3><a class="header" href="#the-www-" id="the-www-">The WWW 🌏</a></h3>
+<p><strong>A framework for web applications (Rust + WebAssembly) <a href="https://yew.rs/">yew.rs</a></strong></p>
 <pre><pre class="playground"><code class="language-rust">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>#[test]
-fn test_something() {
-    assert_ne!(42, 0);
+</span>// This won't run
+fn view(&amp;self) -&gt; Html {
+    // LOOK another macro like our json! macro before
+    html! {
+        &lt;div&gt;
+            &lt;button onclick=self.link.callback(|_| Msg::AddOne)&gt;{ &quot;+1&quot; }&lt;/button&gt;
+            &lt;p&gt;{ self.value }&lt;/p&gt;
+        &lt;/div&gt;
+    }
 }
 <span class="boring">}
 </span></code></pre></pre>
+<p><strong>Actor based web framework <a href="https://actix.rs/">Actix</a></strong></p>
+<pre><pre class="playground"><code class="language-rust">// This won't run
+#[actix_rt::main]
+async fn main() -&gt; std::io::Result&lt;()&gt; {
+    HttpServer::new(|| {
+        App::new()
+            .route(&quot;/&quot;, web::get().to(greet))
+            .route(&quot;/{name}&quot;, web::get().to(greet))
+    })
+    .bind(&quot;127.0.0.1:8000&quot;)?
+    .run()
+    .await
+}
+</code></pre></pre>
+<h3><a class="header" href="#parallel-programming" id="parallel-programming">Parallel Programming</a></h3>
+<p><strong>Rust natively supports parallel programming but we also have some cool things:</strong></p>
+<ul>
+<li><a href="https://github.com/rayon-rs/rayon">rayon</a> simplifies data parallelism using <code>iterator</code> helpers in Rust. This automatically spins up threads on separate CPUs!</li>
+</ul>
+<p>The borrow checker, thread safety and highly concurrent nature of Rust allows powerful tools like <code>Rayon</code> to simplify the way we think about problems</p>
+<pre><pre class="playground"><code class="language-rust editable">extern crate rayon;
+extern crate rand;
+use rayon::prelude::*;
+use std::time::Instant;
+use rand::{distributions::Uniform, Rng};
+
+fn main() {
+
+    // Used for our random large vector below
+    let mut rng = rand::thread_rng();
+    let range = Uniform::new(1, 10);
+
+    let large_vector: Vec&lt;u64&gt; = (0..1_000_000)
+        .map(|_| rng.sample(&amp;range))
+        .collect();
+
+    // let start = Instant::now();
+    // let sum = sum_of_squares(&amp;large_vector);
+    // let duration1 = start.elapsed();
+    
+    // println!(&quot;Sum is: {}, Time: {:?}&quot;, sum, duration1);
+    
+    let start = Instant::now();
+    let sum = sum_of_squares_parallel(&amp;large_vector); // SPEED!
+    let duration2 = start.elapsed();
+    println!(&quot;Sum is: {}, Time: {:?}&quot;, sum, duration2);
+}
+
+fn sum_of_squares_parallel(input: &amp;Vec&lt;u64&gt;) -&gt; u64 {
+    // -&gt; `par_iter` is a paraller iterator provided by `rayon`
+    input.par_iter().map(|&amp;i| i * i).sum()
+}
+
+fn sum_of_squares(input: &amp;Vec&lt;u64&gt;) -&gt; u64 {
+    input.iter().map(|&amp;i| i * i).sum()
+}
+</code></pre></pre>
+<p>Should output something like:</p>
+<pre><code>Sequential Sum of Squares is: 31650045, 47ms
+Parallel   Sum of Squares is: 31650045, 13ms
+Speedup of: 3.62x
+</code></pre>
+<h1><a class="header" href="#others" id="others">Others</a></h1>
+<hr />
+<h2><a class="header" href="#game-dev" id="game-dev">Game Dev</a></h2>
+<p><a href="https://amethyst.rs">Amethyst</a><br />
+<a href="https://ggez.rs">ggez</a><br />
+<a href="https://www.piston.rs">piston</a> </p>
+<p>Games Made from the ⬆️<br />
+<a href="https://github.com/bfops/playform">playform</a><br />
+<a href="https://github.com/PistonDevelopers/hematite">hematite</a></p>
+<h2><a class="header" href="#a-new-nodejs" id="a-new-nodejs">A new NodeJS?</a></h2>
+<p><strong><a href="https://deno.land/">deno</a> (The new NodeJS) in TypeScript and with a Rust Runtime</strong></p>
+<p>Written by one of the original creators of NodeJS <a href="https://en.wikipedia.org/wiki/Ryan_Dahl">Ryan Dahl</a></p>
+<pre><code class="language-typescript">import { serve } from &quot;https://deno.land/std@0.60.0/http/server.ts&quot;;
+const s = serve({ port: 8000 });
+console.log(&quot;http://localhost:8000/&quot;);
+for await (const req of s) {
+  req.respond({ body: &quot;Hello World\n&quot; });
+}
+</code></pre>
+<h2><a class="header" href="#operating-systems" id="operating-systems">Operating Systems</a></h2>
+<p>A fully bootable operating system entirely in Rust with terminal, web browser, file browser.
+<a href="https://www.redox-os.org/">redox OS</a></p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="chapter_1_why_rust.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="chap_2-2_the_borrow_checker.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="chapter_2-1_the_language.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="chap_4_tooling.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -251,13 +294,13 @@ fn test_something() {
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="chapter_1_why_rust.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="chap_2-2_the_borrow_checker.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="chapter_2-1_the_language.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="chap_4_tooling.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
@@ -266,24 +309,13 @@ fn test_something() {
         </div>
 
         
-        <!-- Livereload script (if served using the cli tool) -->
+
+        
+
+        
         <script type="text/javascript">
-            var socket = new WebSocket("ws://localhost:3000/__livereload");
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
+            window.playground_line_numbers = true;
         </script>
-        
-
-        
-
         
 
         

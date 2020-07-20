@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>References - Rust Intro</title>
+        <title>Extras - Rust Intro</title>
         
         
 
@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="chapter_1_why_rust.html"><strong aria-hidden="true">1.</strong> Why Rust?</a></li><li class="chapter-item expanded "><a href="chapter_2_the_language.html"><strong aria-hidden="true">2.</strong> Language</a></li><li class="chapter-item expanded "><a href="chapter_2-1_the_language.html"><strong aria-hidden="true">3.</strong> The Borrow Checker</a></li><li class="chapter-item expanded "><a href="chapter_1-1_what_is_used_for.html"><strong aria-hidden="true">4.</strong> Cool Stuff</a></li><li class="chapter-item expanded "><a href="chapter_3_tooling.html"><strong aria-hidden="true">5.</strong> Tooling</a></li><li class="chapter-item expanded "><a href="chapter_4_community.html"><strong aria-hidden="true">6.</strong> Community</a></li><li class="chapter-item expanded "><a href="chapter_5_good.html"><strong aria-hidden="true">7.</strong> Good</a></li><li class="chapter-item expanded "><a href="chapter_6_bad.html"><strong aria-hidden="true">8.</strong> Bad/Hard</a></li><li class="chapter-item expanded "><a href="chapter_6_ugly.html"><strong aria-hidden="true">9.</strong> Ugly</a></li><li class="chapter-item expanded "><a href="chapter_7_cool_things.html"><strong aria-hidden="true">10.</strong> Cool Things</a></li><li class="chapter-item expanded "><a href="references.html" class="active"><strong aria-hidden="true">11.</strong> References</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="chap_1_why_rust.html"><strong aria-hidden="true">1.</strong> Why Rust?</a></li><li class="chapter-item expanded "><a href="chap_2_the_language.html"><strong aria-hidden="true">2.</strong> The Language</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chap_2-1_compiler_in_action.html"><strong aria-hidden="true">2.1.</strong> The Compiler in Action</a></li><li class="chapter-item expanded "><a href="chap_2-2_the_borrow_checker.html"><strong aria-hidden="true">2.2.</strong> The Borrow Checker</a></li><li class="chapter-item expanded "><a href="chap_3_rust_examples.html"><strong aria-hidden="true">2.3.</strong> Real World Rust</a></li></ol></li><li class="chapter-item expanded "><a href="chap_4_tooling.html"><strong aria-hidden="true">3.</strong> Tooling</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="chap_4-1_tooling.html" class="active"><strong aria-hidden="true">3.1.</strong> Extras</a></li></ol></li><li class="chapter-item expanded "><a href="chap_5_conclusion.html"><strong aria-hidden="true">4.</strong> Conclusion</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -155,31 +155,56 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#references-and-cool-stuff" id="references-and-cool-stuff">References and Cool Stuff</a></h1>
-<h2><a class="header" href="#mdbook-a-rust-lang-project-i-used-to-create-this-book" id="mdbook-a-rust-lang-project-i-used-to-create-this-book">mdBook (A rust-lang project I used to create this book)</a></h2>
-<p>https://rust-lang.github.io/mdBook</p>
-<h2><a class="header" href="#interactive-rust-tour" id="interactive-rust-tour">Interactive Rust tour</a></h2>
-<p>https://tourofrust.com</p>
-<h2><a class="header" href="#the-are-we-yet" id="the-are-we-yet">The Are We Yet...</a></h2>
-<p>http://www.arewelearningyet.com</p>
-<p>https://wiki.mozilla.org/Areweyet</p>
-<p>GUI status
-https://areweguiyet.com/</p>
-<p>Web status
-https://www.arewewebyet.org/</p>
-<p>Game development status
-https://arewegameyet.rs/</p>
+                        <h1><a class="header" href="#checking-code-docs-and-debugging" id="checking-code-docs-and-debugging">Checking Code, Docs and Debugging</a></h1>
+<h2><a class="header" href="#the-linter-rust-clippy-and-code-formatter-rustfmt" id="the-linter-rust-clippy-and-code-formatter-rustfmt">The <code>linter</code>, <code>rust-clippy</code> and code formatter <code>rustfmt</code></a></h2>
+<p><code>rustup</code> gives the possibility to install a linter and code formatter
+providing functions similar to <code>eslint</code> and <code>prettier</code></p>
+<p>Linting by default with <code>rustc</code>
+<a href="https://doc.rust-lang.org/rustc/lints/groups.html">https://doc.rust-lang.org/rustc/lints/groups.html</a></p>
+<p><code>rustc main.rs -D nonstandard-style</code></p>
+<pre><code>error: variable `camelCase` should have a snake case name
+  --&gt; src/main.rs:30:9
+   |
+30 |     let camelCase = &quot;I'm a camel&quot;;
+   |         ^^^^^^^^^ help: convert the identifier to snake case: `camel_case`
+   |
+   = note: `-D non-snake-case` implied by `-D nonstandard-style`
+</code></pre>
+<h2><a class="header" href="#rustdoc-and-mdbook" id="rustdoc-and-mdbook"><code>rustdoc</code> and <code>mdbook</code></a></h2>
+<p>Rust source code supports <code>///</code> comment annotations to generate full blown documentation. <code>mdbook</code> creates a full book from markdown and code annotations (This book was created in <code>mdbook</code>!)</p>
+<pre><pre class="playground"><code class="language-rust editable">/// You can have rust code between fences inside the comments
+/// If you pass --test to `rustdoc`, it will even test it for you!
+/// ```
+/// use doc::Person;
+/// let person = Person::new(&quot;name&quot;);
+/// ```
+
+</code></pre></pre>
+<h2><a class="header" href="#debugging-with-gdb-and-lldb" id="debugging-with-gdb-and-lldb">Debugging with <code>gdb</code> and <code>lldb</code></a></h2>
+<p>Many problems with your code will be picked up by the compiler but logic errors won't.</p>
+<ul>
+<li>Rust doesn't provide a debugger itself but debug symbols for use with a native debugger </li>
+<li>Both VSCode and IntelliJ have plugin support for lldb and gdb</li>
+</ul>
+<p>For example in VSCode you could install:</p>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=vadimcn.vscode-lldb">CodeLLDB</a>
+or
+<a href="https://marketplace.visualstudio.com/items?itemName=webfreak.debug">Native Debug</a></p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="chapter_7_cool_things.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="chap_4_tooling.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
+                        
+                            <a rel="next" href="chap_5_conclusion.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
                         
 
                         <div style="clear: both"></div>
@@ -189,35 +214,28 @@ https://arewegameyet.rs/</p>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="chapter_7_cool_things.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="chap_4_tooling.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
+                
+                    <a rel="next" href="chap_5_conclusion.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
                 
             </nav>
 
         </div>
 
         
-        <!-- Livereload script (if served using the cli tool) -->
+
+        
+
+        
         <script type="text/javascript">
-            var socket = new WebSocket("ws://localhost:3000/__livereload");
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
+            window.playground_line_numbers = true;
         </script>
-        
-
-        
-
         
 
         
